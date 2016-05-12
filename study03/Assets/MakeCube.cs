@@ -12,6 +12,6 @@ public class MakeCube : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
     var obj = GameObject.Find ("とうふ");
-    obj.transform.position = new Vector3 (1, 0, 0);
+    Vector3 pos = obj.transform.position;
 	}
 }
