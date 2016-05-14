@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
+
 public class CreateCube : MonoBehaviour {
 
   GameObject cube_ = null;
@@ -20,6 +21,12 @@ public class CreateCube : MonoBehaviour {
     if (cube_ == null) {
       Debug.Log ("err : cube dose not loaded...");
     }
+
+    UnityEditor
+      .Events
+      .UnityEventTools
+      .AddObjectPersistentListener<GameObject> 
+      (GetComponent<Button>().onClick, OnClick, gameObject);
 	}
 	
 	// Update is called once per frame
@@ -28,13 +35,14 @@ public class CreateCube : MonoBehaviour {
 	}
 
   // call if clicked button
-  public void OnClick() {
-    var obj = Instantiate (cube_);
-    obj.name = "cube" + count_;
-    obj.transform.SetParent (this.transform);
-    obj.transform.position = new Vector3 (Random.Range(-5.0f, 5.0f),
-                                          Random.Range(-5.0f, 5.0f),
-                                          Random.Range(-5.0f, 5.0f));
+  // make cube | random posision
+  void OnClick(GameObject obj) {
+    var item = Instantiate (cube_);
+    item.name = "cube" + count_;
+    item.transform.SetParent (this.transform);
+    item.transform.position = new Vector3 (Random.Range(-5.0f, 5.0f),
+                                           Random.Range(-5.0f, 5.0f),
+                                           Random.Range(-5.0f, 5.0f));
     count_++;
   }
 }
