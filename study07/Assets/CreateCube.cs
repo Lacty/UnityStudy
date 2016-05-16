@@ -22,11 +22,7 @@ public class CreateCube : MonoBehaviour {
       Debug.Log ("err : cube dose not loaded...");
     }
 
-    UnityEditor
-      .Events
-      .UnityEventTools
-      .AddObjectPersistentListener<GameObject> 
-      (GetComponent<Button>().onClick, OnClick, gameObject);
+    GetComponent<Button> ().onClick.AddListener (OnClick);
 	}
 	
 	// Update is called once per frame
@@ -36,7 +32,7 @@ public class CreateCube : MonoBehaviour {
 
   // call if clicked button
   // make cube | random posision
-  void OnClick(GameObject obj) {
+  void OnClick() {
     var item = Instantiate (cube_);
     item.name = "cube" + count_;
     item.transform.SetParent (this.transform);
